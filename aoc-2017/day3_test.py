@@ -1,6 +1,8 @@
 import day3
 import unittest
 
+MY_INPUT = 368078
+
 class Day3Test(unittest.TestCase):
     def test1(self):
         self.assertEqual(day3.day3_1(1), 0)
@@ -11,6 +13,7 @@ class Day3Test(unittest.TestCase):
         self.assertEqual(day3.day3_1(12), 3)
         self.assertEqual(day3.day3_1(23), 2)
         self.assertEqual(day3.day3_1(1024), 31)
+        self.assertEqual(day3.day3_1(MY_INPUT), 371)
 
 if __name__ == '__main__':
     unittest.main()
