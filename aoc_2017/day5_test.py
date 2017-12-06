@@ -18,7 +18,7 @@ def read_file(filename):
         content = map(lambda val: int(val.replace("\n", "")), content)
         return content
 
-MY_INPUT = read_file("aoc/aoc-2017/data/day5_real.csv")
+MY_INPUT = read_file("aoc/aoc_2017/data/day5_real.csv")
 
 if __name__ == '__main__':
     unittest.main()

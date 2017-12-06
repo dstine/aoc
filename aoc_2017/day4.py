@@ -7,9 +7,8 @@ def day4_2(filename):
     return day4(filename, anagram_test)
 
 def day4(filename, test):
-    path = "aoc/aoc-2017/data/" + filename
     valid_phrases = 0
-    with open(path) as file:
+    with open(filename) as file:
         reader  = csv.reader(file, delimiter=" ")
         for row in reader:
             if is_valid_phrase(row, test):
