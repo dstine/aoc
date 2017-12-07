@@ -9,7 +9,7 @@ class Day6Test(unittest.TestCase):
         self.assertEqual(day6.day6_1([0, 2, 7, 0]), 5)
         self.assertEqual(day6.day6_1(MY_INPUT), 6681)
 
-    def test_day6_1(self):
+    def test_day6_2(self):
         self.assertEqual(day6.day6_2([0, 2, 7, 0]), 4)
         self.assertEqual(day6.day6_2(MY_INPUT), 2392)
 
