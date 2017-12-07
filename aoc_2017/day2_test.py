@@ -13,12 +13,9 @@ class Day2Test(unittest.TestCase):
         self.assertEqual(day2.day2_2(MY_INPUT), 272)
 
 def read_file(filename):
-    contents = []
     with open(filename) as file:
         reader = csv.reader(file, delimiter='\t')
-        for line in reader:
-            contents.append(list(map(int, line)))
-    return contents
+        return [list(map(int, line)) for line in reader]
 
 MY_INPUT = read_file("aoc/aoc_2017/data/day2_real.csv")
 
