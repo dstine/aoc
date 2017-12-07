@@ -15,7 +15,7 @@ class Day5Test(unittest.TestCase):
 def read_file(filename):
     with open(filename) as file:
         content = file.readlines()
-        content = map(lambda val: int(val.replace("\n", "")), content)
+        content = list(map(lambda val: int(val.replace("\n", "")), content))
         return content
 
 MY_INPUT = read_file("aoc/aoc_2017/data/day5_real.csv")

@@ -17,7 +17,7 @@ def read_file(filename):
     with open(filename) as file:
         reader = csv.reader(file, delimiter='\t')
         for line in reader:
-            contents.append(map(int, line))
+            contents.append(list(map(int, line)))
     return contents
 
 MY_INPUT = read_file("aoc/aoc_2017/data/day2_real.csv")

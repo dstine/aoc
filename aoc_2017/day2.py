@@ -3,7 +3,7 @@ import sys
 def day2_1(spreadsheet):
     sum = 0
     for row in spreadsheet:
-        row_min = sys.maxint
+        row_min = sys.maxsize
         row_max = 0
         for cell in row:
             if cell < row_min:
