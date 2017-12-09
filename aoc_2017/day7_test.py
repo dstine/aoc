@@ -22,13 +22,12 @@ class Day7Test(unittest.TestCase):
                  'total_weight': 0})
 
     def test_day7_1(self):
-        example = readfile('aoc/aoc_2017/data/day7_example.txt')
-        self.assertEqual(day7.day7_1(example), 'tknk')
+        self.assertEqual(day7.day7_1(EXAMPLE), 'tknk')
         self.assertEqual(day7.day7_1(MY_INPUT), 'hlqnsbe')
 
     def test_day7_2(self):
         example = readfile('aoc/aoc_2017/data/day7_example.txt')
-        self.assertEqual(day7.day7_2(example), 60)
+        self.assertEqual(day7.day7_2(EXAMPLE), 60)
         self.assertEqual(day7.day7_2(MY_INPUT), 1993)
 
 def readfile(filename):
@@ -36,6 +35,7 @@ def readfile(filename):
         lines = file.readlines()
         return [line.rstrip() for line in lines]
 
+EXAMPLE = readfile('aoc/aoc_2017/data/day7_example.txt')
 MY_INPUT = readfile('aoc/aoc_2017/data/day7_real.txt')
 
 if __name__ == '__main__':
