@@ -5,16 +5,31 @@ class Day7Test(unittest.TestCase):
 
     def test_parse_program(self):
         self.assertEqual(
-            day7.parse_program("ktlj (57)"),
-            ('ktlj', '57', []))
+            day7.parse_program(
+                "ktlj (57)"),
+                {'name': 'ktlj',
+                 'weight': 57,
+                 'supported_names': [],
+                 'supported_weight': 0,
+                 'total_weight': 0})
         self.assertEqual(
-            day7.parse_program("fwft (72) -> ktlj, cntj, xhth"),
-            ('fwft', '72', ['ktlj', 'cntj', 'xhth']))
+            day7.parse_program(
+                "fwft (72) -> ktlj, cntj, xhth"),
+                {'name': 'fwft',
+                 'weight': 72,
+                 'supported_names': ['ktlj', 'cntj', 'xhth'],
+                 'supported_weight': 0,
+                 'total_weight': 0})
 
     def test_day7_1(self):
-        example = readfile('aoc/aoc_2017/data/day7_1_example.txt')
+        example = readfile('aoc/aoc_2017/data/day7_example.txt')
         self.assertEqual(day7.day7_1(example), 'tknk')
         self.assertEqual(day7.day7_1(MY_INPUT), 'hlqnsbe')
+
+    def test_day7_2(self):
+        example = readfile('aoc/aoc_2017/data/day7_example.txt')
+        self.assertEqual(day7.day7_2(example), 60)
+        self.assertEqual(day7.day7_2(MY_INPUT), 1993)
 
 def readfile(filename):
     with open(filename) as file:
