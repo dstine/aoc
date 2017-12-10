@@ -20,7 +20,10 @@ def day3_1(num):
         value = fill_edge(grid, value, location, steps_per_dir, step_left)
         value = fill_edge(grid, value, location, steps_per_dir, step_down)
         value = fill_edge(grid, value, location, steps_per_dir, step_right)
-    return abs(grid[num][0]) + abs(grid[num][1])
+
+    for loc, val in grid.items():
+        if val == num:
+            return abs(loc[0]) + abs(loc[1])
 
 def fill_edge(grid, value, location, steps_per_dir, take_step):
     for i in range(steps_per_dir):
@@ -42,4 +45,4 @@ def step_down(location):
     location[1] -= 1
 
 def update(grid, value, location):
-    grid[value] = tuple(location)
+    grid[tuple(location)] = value
