@@ -14,6 +14,9 @@ class Day3Test(unittest.TestCase):
         self.assertEqual(day3.day3_1(23), 2)
         self.assertEqual(day3.day3_1(1024), 31)
         self.assertEqual(day3.day3_1(MY_INPUT), 371)
+    def test2(self):
+        self.assertEqual(day3.day3_2(30), 54)
+        self.assertEqual(day3.day3_2(MY_INPUT), 369601)
 
 if __name__ == '__main__':
     unittest.main()
