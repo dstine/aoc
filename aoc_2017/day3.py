@@ -56,10 +56,6 @@ def day3_2(num):
         if ret != 0:
             return ret
 
-    for loc, val in grid.items():
-        if val == num:
-            return abs(loc[0]) + abs(loc[1])
-
 def fill_edge_2(grid, num, curr_location, steps_per_dir, take_step):
     for i in range(steps_per_dir):
         take_step(curr_location)
