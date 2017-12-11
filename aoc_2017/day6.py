@@ -1,4 +1,4 @@
-import functools
+from functools import reduce
 
 def day6_1(memory):
     return day6(memory)[0]
@@ -27,7 +27,7 @@ def day6(memory):
 
 def select_entry(memory):
     indexed_memory = list(enumerate(memory)) # zipWithIndex
-    selected_entry = functools.reduce(
+    selected_entry = reduce(
         lambda result, incoming: incoming if incoming[1] > result[1] else result,
         indexed_memory, (0, 0))
     return selected_entry

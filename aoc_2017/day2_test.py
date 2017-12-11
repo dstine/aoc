@@ -15,7 +15,7 @@ class Day2Test(unittest.TestCase):
 def read_file(filename):
     with open(filename) as file:
         reader = csv.reader(file, delimiter='\t')
-        return [list(map(int, line)) for line in reader]
+        return [[int(field) for field in line] for line in reader]
 
 MY_INPUT = read_file("aoc/aoc_2017/data/day2_real.csv")
 
