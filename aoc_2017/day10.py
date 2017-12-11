@@ -1,3 +1,5 @@
+from  functools import reduce
+
 def day10_1(lst_length, lengths_input):
     return day10(lst_length, lengths_input, calc_lengths_1, 1, product_first_two)
 
@@ -35,24 +37,17 @@ def reverse(indexes, lst):
 def product_first_two(lst):
     return lst[0] * lst[1]
 
+NUM_BLOCKS = 16
 BLOCK_SIZE = 16
 
 def hash_in_hex(lst):
-    dense_hash = []
-    for i in range(BLOCK_SIZE):
-        dense_hash.append(bitwise_xor(lst[BLOCK_SIZE*i:BLOCK_SIZE*i + BLOCK_SIZE]))
+    dense_hash = [bitwise_xor(lst[BLOCK_SIZE*i : BLOCK_SIZE*i + BLOCK_SIZE]) for i in range(NUM_BLOCKS)]
     hex_hash = [hex(n).replace('0x', '') for n in dense_hash]
-    hex_hash = [h if len(h) == 2 else '0'+h for h in hex_hash]
-    ans = ''
-    for i in range(BLOCK_SIZE):
-        ans += hex_hash[i]
-    return ans
+    hex_hash = [h if len(h) == 2 else '0' + h for h in hex_hash]
+    return reduce(lambda a, b: a + b, hex_hash, '')
 
 def bitwise_xor(sub_lst):
-    acc = 0
-    for i in range(0, len(sub_lst)):
-        acc ^= sub_lst[i]
-    return acc
+    return reduce(lambda a, b: a ^ b, sub_lst, 0)
 
 def calc_lengths_1(lengths_input):
     return [int(n) for n in lengths_input.split(',')]
