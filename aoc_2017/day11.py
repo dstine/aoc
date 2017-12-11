@@ -5,11 +5,21 @@ ORIGIN = (1, 1, -2)
 DIMENSIONS = 3
 
 def day11_1(input):
+    return day11(input)[0]
+
+def day11_2(input):
+    return day11(input)[1]
+
+def day11(input):
     directions = input.split(',')
     location = list(ORIGIN)
+    max_distance = 0
     for direction in directions:
         move(location, direction)
-    return calc_distance(location)
+        distance = calc_distance(location)
+        max_distance = max(distance, max_distance)
+    final_distance = calc_distance(location)
+    return (final_distance, max_distance)
 
 MOVE_DELTAS = {
     'n':  ( 0,  1, -1),

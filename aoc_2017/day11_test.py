@@ -8,6 +8,8 @@ class Day11Test(unittest.TestCase):
         self.assertEqual(day11.day11_1('ne,ne,s,s'), 2)
         self.assertEqual(day11.day11_1('se,sw,se,sw,sw'), 3)
         self.assertEqual(day11.day11_1(MY_INPUT), 682)
+    def test_day11_2(self):
+        self.assertEqual(day11.day11_2(MY_INPUT), 1406)
 
 def readfile(filename):
     with open(filename) as file:
