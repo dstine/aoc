@@ -11,16 +11,15 @@ def day13_1(filename):
     layers_dict = parse_lines(lines)
     firewall = {layer[0]: Layer(POSITIVE, [SCANNER] + [EMPTY] * (layer[1]-1)) for layer in layers_dict.items()}
     packet_layer = 0
-    firewall_depth = max(layers_dict)+1
-    result = 0
-    for n in range(firewall_depth):
-        #print(packet_layer, firewall)
-        if packet_layer in layers_dict:
+    firewall_depth = max(firewall)+1
+    severity = 0
+    for _ in range(firewall_depth):
+        if packet_layer in firewall:
             if firewall[packet_layer].locations[0] == 1:
-                result += packet_layer * len(firewall[packet_layer].locations)
+                severity += packet_layer * len(firewall[packet_layer].locations)
         tick_picosecond(firewall)
         packet_layer += 1
-    return result
+    return severity
 
 def tick_picosecond(firewall):
     for layer in firewall:
@@ -47,6 +46,27 @@ def move_positive(locations, scanner_idx):
 def move_negative(locations, scanner_idx):
     locations[scanner_idx] = EMPTY
     locations[scanner_idx-1] = SCANNER
+
+def day13_2(filename):
+    lines = readfile(filename)
+    layers_dict = parse_lines(lines)
+    delay = 0
+    while True:
+        if not caught(layers_dict, delay):
+            return delay
+        delay += 1
+
+def caught(layers_dict, delay):
+    packet_layer = 0
+    for n in range(max(layers_dict) + 1):
+        if packet_layer in layers_dict:
+            if scanner_location(delay + packet_layer, layers_dict[packet_layer]) == 0:
+                return True
+        packet_layer += 1
+    return False
+
+def scanner_location(time, depth):
+    return time % (2*depth - 2)
 
 def readfile(filename):
     with open(filename) as file:
