@@ -1,9 +1,29 @@
 def day16_1(initial_line, filename):
+    return day16(initial_line, filename, 1)
+
+def day16_2(initial_line, filename):
+    # runtime is not acceptable; implement cycle detection
+    #return day16(initial_line, filename, 1000000000)
+    return 0
+
+def day16(initial_line, filename, repeats):
     line = list(initial_line)
-    dance = readfile(filename)
-    for move in dance:
-        line = perform_move(line, move)
+    moves = readfile(filename)
+    seen = {}
+    while repeats > 0:
+        key = tuple(line)
+        if key in seen:
+            line = seen[key]
+        else:
+            for move in moves:
+                line = perform_move(line, move)
+            seen[key] = line
+        repeats -= 1
     return ''.join(line)
+
+SPIN = 's'
+EXCHANGE = 'x'
+PARTNER = 'p'
 
 def perform_move(line, move):
     move_type = move[0]
@@ -29,10 +49,6 @@ def perform_move(line, move):
     else:
         raise Exception('unknown move type')
     return ''
-
-SPIN = 's'
-EXCHANGE = 'x'
-PARTNER = 'p'
 
 def readfile(filename):
     with open(filename) as file:
