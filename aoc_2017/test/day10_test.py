@@ -1,5 +1,5 @@
-import day10
 import test_utils
+import day10
 import unittest
 
 class Day10Test(unittest.TestCase):
@@ -23,7 +23,7 @@ def readfile(filename):
         line = file.readline()
         return line
 
-MY_INPUT = readfile(test_utils.get_path(__file__, 'day10_real.txt'))
+MY_INPUT = readfile(test_utils.get_path('day10_real.txt'))
 
 if __name__ == '__main__':
     unittest.main()

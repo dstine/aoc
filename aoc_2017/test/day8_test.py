@@ -1,5 +1,5 @@
-import day8
 import test_utils
+import day8
 import unittest
 
 class Day8Test(unittest.TestCase):
@@ -15,8 +15,8 @@ def readfile(filename):
         lines = file.readlines()
         return [line.rstrip() for line in lines]
 
-EXAMPLE = readfile(test_utils.get_path(__file__, 'day8_example.txt'))
-MY_INPUT = readfile(test_utils.get_path(__file__, 'day8_real.txt'))
+EXAMPLE = readfile(test_utils.get_path('day8_example.txt'))
+MY_INPUT = readfile(test_utils.get_path('day8_real.txt'))
 
 if __name__ == '__main__':
     unittest.main()
