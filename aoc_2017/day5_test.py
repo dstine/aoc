@@ -1,5 +1,6 @@
 import csv
 import day5
+import test_utils
 import unittest
 
 class Day5Test(unittest.TestCase):
@@ -18,7 +19,7 @@ def read_file(filename):
         content = [int(val.replace("\n", "")) for val in content]
         return content
 
-MY_INPUT = read_file("aoc/aoc_2017/data/day5_real.csv")
+MY_INPUT = read_file(test_utils.get_path(__file__, "day5_real.csv"))
 
 if __name__ == '__main__':
     unittest.main()

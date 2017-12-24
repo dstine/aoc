@@ -1,4 +1,5 @@
 import day7
+import test_utils
 import unittest
 
 class Day7Test(unittest.TestCase):
@@ -26,7 +27,7 @@ class Day7Test(unittest.TestCase):
         self.assertEqual(day7.day7_1(MY_INPUT), 'hlqnsbe')
 
     def test_day7_2(self):
-        example = readfile('aoc/aoc_2017/data/day7_example.txt')
+        example = readfile(test_utils.get_path(__file__, 'day7_example.txt'))
         self.assertEqual(day7.day7_2(EXAMPLE), 60)
         self.assertEqual(day7.day7_2(MY_INPUT), 1993)
 
@@ -35,8 +36,8 @@ def readfile(filename):
         lines = file.readlines()
         return [line.rstrip() for line in lines]
 
-EXAMPLE = readfile('aoc/aoc_2017/data/day7_example.txt')
-MY_INPUT = readfile('aoc/aoc_2017/data/day7_real.txt')
+EXAMPLE = readfile(test_utils.get_path(__file__, 'day7_example.txt'))
+MY_INPUT = readfile(test_utils.get_path(__file__, 'day7_real.txt'))
 
 if __name__ == '__main__':
     unittest.main()
