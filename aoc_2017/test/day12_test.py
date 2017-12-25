@@ -1,5 +1,5 @@
-import test.test_utils as test_utils
-import day12
+import aoc_2017.test.test_utils as test_utils
+import aoc_2017.day12 as day12
 import unittest
 
 class Day12Test(unittest.TestCase):

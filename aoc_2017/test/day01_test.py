@@ -1,4 +1,4 @@
-import day01
+import aoc_2017.day01 as day01
 import unittest
 
 MY_INPUT_RAW = """

@@ -1,4 +1,4 @@
-import day03
+import aoc_2017.day03 as day03
 import unittest
 
 MY_INPUT = 368078

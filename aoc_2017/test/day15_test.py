@@ -1,4 +1,4 @@
-import day15
+import aoc_2017.day15 as day15
 import unittest
 
 class Day15Test(unittest.TestCase):

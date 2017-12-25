@@ -1,5 +1,5 @@
-import test.test_utils as test_utils
-import day04
+import aoc_2017.test.test_utils as test_utils
+import aoc_2017.day04 as day04
 import unittest
 
 MY_INPUT = test_utils.get_path("day4_real.csv")

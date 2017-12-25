@@ -1,5 +1,5 @@
-import test.test_utils as test_utils
-import day05
+import aoc_2017.test.test_utils as test_utils
+import aoc_2017.day05 as day05
 import csv
 import unittest
 
