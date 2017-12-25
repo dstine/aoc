@@ -1,14 +1,14 @@
 import test_utils
-import day8
+import day08
 import unittest
 
-class Day8Test(unittest.TestCase):
+class Day08Test(unittest.TestCase):
     def test_day8_1(self):
-        self.assertEqual(day8.day8_1(EXAMPLE), 1)
-        self.assertEqual(day8.day8_1(MY_INPUT), 5966)
+        self.assertEqual(day08.day8_1(EXAMPLE), 1)
+        self.assertEqual(day08.day8_1(MY_INPUT), 5966)
     def test_day8_2(self):
-        self.assertEqual(day8.day8_2(EXAMPLE), 10)
-        self.assertEqual(day8.day8_2(MY_INPUT), 6347)
+        self.assertEqual(day08.day8_2(EXAMPLE), 10)
+        self.assertEqual(day08.day8_2(MY_INPUT), 6347)
 
 def readfile(filename):
     with open(filename) as file:

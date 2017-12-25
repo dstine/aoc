@@ -1,5 +1,5 @@
 import test_utils
-import day1
+import day01
 import unittest
 
 MY_INPUT_RAW = """
@@ -28,20 +28,20 @@ MY_INPUT_RAW = """
 """
 MY_INPUT = MY_INPUT_RAW.replace("\n", "")
 
-class Day1Test(unittest.TestCase):
+class Day01Test(unittest.TestCase):
     def test1(self):
-        self.assertEqual(day1.day1_1("1122"), 3)
-        self.assertEqual(day1.day1_1("1111"), 4)
-        self.assertEqual(day1.day1_1("1234"), 0)
-        self.assertEqual(day1.day1_1("91212129"), 9)
-        self.assertEqual(day1.day1_1(MY_INPUT), 1144)
+        self.assertEqual(day01.day1_1("1122"), 3)
+        self.assertEqual(day01.day1_1("1111"), 4)
+        self.assertEqual(day01.day1_1("1234"), 0)
+        self.assertEqual(day01.day1_1("91212129"), 9)
+        self.assertEqual(day01.day1_1(MY_INPUT), 1144)
     def test2(self):
-        self.assertEqual(day1.day1_2("1212"), 6)
-        self.assertEqual(day1.day1_2("1221"), 0)
-        self.assertEqual(day1.day1_2("123425"), 4)
-        self.assertEqual(day1.day1_2("123123"), 12)
-        self.assertEqual(day1.day1_2("12131415"), 4)
-        self.assertEqual(day1.day1_2(MY_INPUT), 1194)
+        self.assertEqual(day01.day1_2("1212"), 6)
+        self.assertEqual(day01.day1_2("1221"), 0)
+        self.assertEqual(day01.day1_2("123425"), 4)
+        self.assertEqual(day01.day1_2("123123"), 12)
+        self.assertEqual(day01.day1_2("12131415"), 4)
+        self.assertEqual(day01.day1_2(MY_INPUT), 1194)
 
 if __name__ == '__main__':
     unittest.main()
