@@ -1,4 +1,3 @@
-import test_utils
 import day03
 import unittest
 

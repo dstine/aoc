@@ -1,4 +1,4 @@
-import test_utils
+import test.test_utils as test_utils
 import day05
 import csv
 import unittest
