@@ -1,5 +1,5 @@
 import aoc_2017.day01 as day01
-import unittest
+import pytest
 
 MY_INPUT_RAW = """
 8239366453455812726956773185134594918346411298443937426725535444391263143998467732348455355933553489
@@ -27,20 +27,17 @@ MY_INPUT_RAW = """
 """
 MY_INPUT = MY_INPUT_RAW.replace("\n", "")
 
-class Day01Test(unittest.TestCase):
-    def test1(self):
-        self.assertEqual(day01.day1_1("1122"), 3)
-        self.assertEqual(day01.day1_1("1111"), 4)
-        self.assertEqual(day01.day1_1("1234"), 0)
-        self.assertEqual(day01.day1_1("91212129"), 9)
-        self.assertEqual(day01.day1_1(MY_INPUT), 1144)
-    def test2(self):
-        self.assertEqual(day01.day1_2("1212"), 6)
-        self.assertEqual(day01.day1_2("1221"), 0)
-        self.assertEqual(day01.day1_2("123425"), 4)
-        self.assertEqual(day01.day1_2("123123"), 12)
-        self.assertEqual(day01.day1_2("12131415"), 4)
-        self.assertEqual(day01.day1_2(MY_INPUT), 1194)
+def test_1():
+    assert day01.day1_1("1122") == 3
+    assert day01.day1_1("1111") == 4
+    assert day01.day1_1("1234") == 0
+    assert day01.day1_1("91212129") == 9
+    assert day01.day1_1(MY_INPUT) == 1144
 
-if __name__ == '__main__':
-    unittest.main()
+def test_2():
+    assert day01.day1_2("1212") == 6
+    assert day01.day1_2("1221") == 0
+    assert day01.day1_2("123425") == 4
+    assert day01.day1_2("123123") == 12
+    assert day01.day1_2("12131415") == 4
+    assert day01.day1_2(MY_INPUT) == 1194

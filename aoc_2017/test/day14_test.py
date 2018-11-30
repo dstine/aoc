@@ -1,12 +1,8 @@
 import aoc_2017.day14 as day14
-import unittest
+import pytest
 
-class Day14Test(unittest.TestCase):
-    def test_day14_1(self):
-        self.assertEqual(day14.day14_1('flqrgnkx'), 8108)
-        self.assertEqual(day14.day14_1(MY_INPUT), 8074)
+def test_day14_1():
+    assert day14.day14_1('flqrgnkx') == 8108
+    assert day14.day14_1(MY_INPUT) == 8074
 
 MY_INPUT = 'jzgqcdpd'
-
-if __name__ == '__main__':
-    unittest.main()
