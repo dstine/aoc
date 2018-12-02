@@ -22,9 +22,9 @@ def part1(ids):
 def compare(id1, id2):
     num_diffs = 0
     matches = ''
-    for i in range(len(id1)):
-        if id1[i] == id2[i]:
-            matches += id1[i]
+    for pair in zip(id1, id2):
+        if pair[0] == pair[1]:
+            matches += pair[0]
         else:
             num_diffs += 1
     return (num_diffs, matches)
