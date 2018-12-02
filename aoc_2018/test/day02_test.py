@@ -3,10 +3,10 @@ import aoc_2018.day02 as day02
 import pytest
 
 def test_count():
-    assert day02.count('abcdef') == (0, 0)
-    assert day02.count('bababc') == (1, 1)
-    assert day02.count('abbcde') == (1, 0)
-    assert day02.count('abcccd') == (0, 1)
+    assert day02.count('abcdef') == (False, False)
+    assert day02.count('bababc') == (True, True)
+    assert day02.count('abbcde') == (True, False)
+    assert day02.count('abcccd') == (False, True)
 
 def test_1():
     assert day02.part1(['abcdef', 'bababc', 'abbcde','abcccd', 'aabcdd', 'abcdee', 'ababab']) == 12

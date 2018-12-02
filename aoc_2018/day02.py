@@ -1,16 +1,10 @@
 def count(id):
-    counts = {}
-    for c in id:
-        if c in counts.keys():
-            counts[c] += 1
-        else:
-            counts[c] = 1
     has_double = False
     has_triple = False
-    for c, count in counts.items():
-        if count == 2:
+    for c in id:
+        if not has_double and id.count(c) == 2:
             has_double = True
-        elif count == 3:
+        elif not has_triple and id.count(c) == 3:
             has_triple = True
     return (has_double, has_triple)
 
