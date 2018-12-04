@@ -11,10 +11,10 @@ def test_2():
     assert day03.part2(get_my_input()) == 275
 
 def test_parse_claim():
-    assert day03.parse_claim('#1 @ 1,3: 4x4') == (1, (1,3), (4,4))
-    assert day03.parse_claim('#2 @ 3,1: 4x4') == (2, (3,1), (4,4))
-    assert day03.parse_claim('#3 @ 5,5: 2x2') == (3, (5,5), (2,2))
-    assert day03.parse_claim('#1290 @ 325,121: 12x17') == (1290, (325, 121), (12, 17))
+    assert day03.parse_claim('#1 @ 1,3: 4x4') == (1, 1, 3, 4, 4)
+    assert day03.parse_claim('#2 @ 3,1: 4x4') == (2, 3, 1, 4, 4)
+    assert day03.parse_claim('#3 @ 5,5: 2x2') == (3, 5, 5, 2, 2)
+    assert day03.parse_claim('#1290 @ 325,121: 12x17') == (1290, 325, 121, 12, 17)
 
 def test_assert_claim():
     fabric = day03.create_fabric(8, 8)
