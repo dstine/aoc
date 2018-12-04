@@ -1,5 +1,8 @@
 def part1(claims):
     fabric = create_fabric(1000, 1000)
+    return process_claims(fabric, claims)
+
+def process_claims(fabric, claims):
     for raw_claim in claims:
         claim = parse_claim(raw_claim)
         assert_claim(fabric, claim)
@@ -9,6 +12,29 @@ def part1(claims):
             if fabric[j][i] > 1:
                 count += 1
     return count
+
+def part2(claims):
+    fabric = create_fabric(1000, 1000)
+    process_claims(fabric, claims)
+    return find_intact_claim(fabric, claims)
+
+def find_intact_claim(fabric, claims):
+    for raw_claim in claims:
+        claim = parse_claim(raw_claim)
+        coords = claim[1]
+        x = coords[0]
+        y = coords[1]
+        lengths = claim[2]
+        x_len = lengths[0]
+        y_len = lengths[1]
+        intact = True
+        for i in range(x, x + x_len):
+            for j in range(y, y + y_len):
+                if fabric[j][i] > 1:
+                    intact = False
+                    continue
+        if intact:
+            return claim[0]
 
 def create_fabric(x_max, y_max):
     fabric = []

@@ -6,6 +6,10 @@ def test_1():
     assert day03.part1(['#1 @ 1,3: 4x4', '#2 @ 3,1: 4x4', '#3 @ 5,5: 2x2']) == 4
     assert day03.part1(get_my_input()) == 115304
 
+def test_2():
+    assert day03.part2(['#1 @ 1,3: 4x4', '#2 @ 3,1: 4x4', '#3 @ 5,5: 2x2']) == 3
+    assert day03.part2(get_my_input()) == 275
+
 def test_parse_claim():
     assert day03.parse_claim('#1 @ 1,3: 4x4') == (1, (1,3), (4,4))
     assert day03.parse_claim('#2 @ 3,1: 4x4') == (2, (3,1), (4,4))
