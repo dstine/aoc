@@ -2,14 +2,7 @@ from collections import defaultdict
 
 def part1(unsorted_records):
     records = sorted(unsorted_records)
-    records = parse_records(records)
-    guards = {}
-    for id, asleep, wakes in records:
-        if id not in guards.keys():
-            guards[id] = defaultdict(int)
-        minutes = guards[id]
-        for min in range(asleep, wakes):
-            minutes[min] += 1
+    guards = analyze_records(records)
 
     best_sleep = 0
     best_id = 0
@@ -26,6 +19,32 @@ def part1(unsorted_records):
             best_count = count
             best_minute = min
     return best_minute * best_id
+
+def part2(unsorted_records):
+    records = sorted(unsorted_records)
+    guards = analyze_records(records)
+
+    best_count = 0
+    best_minute = 0
+    best_id = 0
+    for id, minutes in guards.items():
+        for min, count in minutes.items():
+            if count > best_count:
+                best_count = count
+                best_minute = min
+                best_id = id
+    return best_minute * best_id
+
+def analyze_records(records):
+    records = parse_records(records)
+    guards = {}
+    for id, asleep, wakes in records:
+        if id not in guards.keys():
+            guards[id] = defaultdict(int)
+        minutes = guards[id]
+        for min in range(asleep, wakes):
+            minutes[min] += 1
+    return guards
 
 def parse_records(records):
     parsed = []
