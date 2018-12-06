@@ -1,5 +1,18 @@
+import sys
+
 def part1(polymer):
     return len(react(polymer))
+
+def part2(polymer):
+    letters = {ch.lower() for ch in polymer}
+    least = sys.maxsize
+    for letter in  letters:
+        other_letters = [ch for ch in polymer if ch.lower() != letter]
+        cleaned = ''.join(other_letters)
+        reacted = react(cleaned)
+        if len(reacted) < least:
+            least = len(reacted)
+    return least
 
 def react(polymer):
     input = polymer
