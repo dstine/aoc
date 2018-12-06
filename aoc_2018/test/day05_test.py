@@ -21,7 +21,7 @@ def test_react():
     assert day05.react('aabAAB') == 'aabAAB'
     assert day05.react('dabAcCaCBAcCcaDA') == 'dabCBAcaDA'
     # my test cases
-    #assert day05.react('aaaA') == 'aa'
+    assert day05.react('aaaA') == 'aa'
     assert day05.react('aaaAb') == 'aab'
     # my input
     assert day05.react(get_my_input()) == get_my_input_reacted()
