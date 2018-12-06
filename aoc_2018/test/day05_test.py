@@ -12,8 +12,7 @@ def test_part1():
 
 def test_part2():
     assert day05.part2('dabAcCaCBAcCcaDA') == 4
-    # stack overflow
-    #assert day05.part2(get_my_input()) == 0
+    assert day05.part2(get_my_input()) == 6952
 
 def test_react():
     assert day05.react('aA') == ''

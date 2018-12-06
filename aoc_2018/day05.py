@@ -14,8 +14,16 @@ def part2(polymer):
             least = len(reacted)
     return least
 
+# recursive approach blew the stack
 def react(polymer):
-    input = polymer
+    prior = ''
+    reacted = polymer
+    while prior != reacted:
+        prior = reacted
+        reacted = react_once(prior)
+    return reacted
+
+def react_once(polymer):
     out = []
     i = 0
     last_index = len(polymer)-1
@@ -35,8 +43,4 @@ def react(polymer):
         if i == last_index:
             out += polymer[i]
 
-    output = ''.join(out)
-    if input == output:
-        return output
-    else:
-        return react(output)
+    return ''.join(out)
