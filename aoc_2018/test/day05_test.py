@@ -19,9 +19,18 @@ def test_react():
     # my test cases
     #assert day05.react('aaaA') == 'aa'
     assert day05.react('aaaAb') == 'aab'
+    # my input
+    assert day05.react(get_my_input()) == get_my_input_reacted()
 
 def get_my_input():
     path = test_utils.get_path('day05_input.txt')
+    return get_one_liner(path)
+
+def get_my_input_reacted():
+    path = test_utils.get_path('day05_input_reacted.txt')
+    return get_one_liner(path)
+
+def get_one_liner(path):
     with open(path) as file:
         # only one line in file
         for line in file:
