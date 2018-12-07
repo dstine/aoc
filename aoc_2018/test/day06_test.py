@@ -11,7 +11,7 @@ example_coords = [
     (8, 9),
 ]
 
-def xtest_part1():
+def test_part1():
     assert day06.part1(example_coords) == 17
     assert day06.part1(get_my_input()) == 3647
 
