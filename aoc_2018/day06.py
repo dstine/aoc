@@ -9,7 +9,7 @@ def part1(coords):
     grid = defaultdict(lambda: -1)
     for x in range(x_lo, x_hi + 1):
         for y in range(y_lo, y_hi + 1):
-            grid[(x, y)] = label_cell((x, y), coords)
+            grid[(x, y)] = label_nearest((x, y), coords)
 
     edge_labels = set()
     for x in range(x_lo, x_hi + 1):
@@ -29,7 +29,7 @@ def part1(coords):
                 counts[label] += 1
     return max(counts.values())
 
-def label_cell(cell, coords):
+def label_nearest(cell, coords):
     closest_distance = sys.maxsize
     closest_indexes = [-1]
     for i, coord in enumerate(coords):
@@ -43,6 +43,20 @@ def label_cell(cell, coords):
         return -1
     else:
         return closest_index[0]
+
+def part2(coords, threshold):
+    x_lo = min([coord[0] for coord in coords])
+    x_hi = max([coord[0] for coord in coords])
+    y_lo = min([coord[1] for coord in coords])
+    y_hi = max([coord[1] for coord in coords])
+    grid = defaultdict(lambda: -1)
+    for x in range(x_lo, x_hi + 1):
+        for y in range(y_lo, y_hi + 1):
+            grid[(x, y)] = label_total_distance((x, y), coords)
+    return sum([1 if v < threshold else 0 for v in grid.values()])
+
+def label_total_distance(cell, coords):
+    return sum([distance(cell, coord) for coord in coords])
 
 def distance(c1, c2):
     return abs(c1[0] - c2[0]) + abs(c1[1] - c2[1])

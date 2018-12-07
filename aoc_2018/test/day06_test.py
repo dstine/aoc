@@ -11,14 +11,21 @@ example_coords = [
     (8, 9),
 ]
 
-def test_part1():
+def xtest_part1():
     assert day06.part1(example_coords) == 17
     assert day06.part1(get_my_input()) == 3647
 
-def test_label_cell():
-    assert day06.label_cell((0, 0), example_coords) == 0
-    assert day06.label_cell((3, 4), example_coords) == 3
-    assert day06.label_cell((2, 5), example_coords) == -1
+def test_label_nearest():
+    assert day06.label_nearest((0, 0), example_coords) == 0
+    assert day06.label_nearest((3, 4), example_coords) == 3
+    assert day06.label_nearest((2, 5), example_coords) == -1
+
+def test_part2():
+    assert day06.part2(example_coords, 32) == 16
+    assert day06.part2(get_my_input(), 10000) == 41605
+
+def test_label_total_distance():
+    assert day06.label_total_distance((4, 3), example_coords) == 30
 
 def test_distance():
     assert day06.distance((0, 0), (1, 1)) == 2
