@@ -8,6 +8,10 @@ def test_part1():
     assert day08.part1(example_input) == 138
     assert day08.part1(get_my_input()) == 45194
 
+def test_part2():
+    assert day08.part2(example_input) == 66
+    assert day08.part2(get_my_input()) == 22989
+
 def get_my_input():
     path = test_utils.get_path('day08_input.txt')
     with open(path) as file:
