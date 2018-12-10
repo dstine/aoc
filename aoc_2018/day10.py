@@ -1,9 +1,18 @@
 import re
 
 def part1(input):
+    _, message = compute(input)
+    return message
+
+def part2(input):
+    t, _ = compute(input)
+    return t
+
+def compute(input):
     points = parse(input)
     last_points = points
     last_area = calc_area(points)
+    t = 0
     while True:
         points = step(points)
         area = calc_area(points)
@@ -11,8 +20,9 @@ def part1(input):
         if area < last_area:
             last_points = points
             last_area = area
+            t += 1
         else:
-            return format_sky(last_points)
+            return t, format_sky(last_points)
 
 def parse(input):
     points = []

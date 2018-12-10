@@ -6,6 +6,10 @@ def test_part1():
     assert day10.part1(get_example_input()) == get_example_result()
     assert day10.part1(get_my_input()) == get_my_result()
 
+def test_part2():
+    assert day10.part2(get_example_input()) == 3
+    assert day10.part2(get_my_input()) == 10454
+
 def get_my_input():
     path = test_utils.get_path('day10_input.txt')
     return get_input(path)
