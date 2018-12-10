@@ -1,5 +1,5 @@
-import aoc_2018.test.test_utils as test_utils
-import aoc_2018.day06 as day06
+import py18.test.test_utils as test_utils
+import py18.day06 as day06
 import pytest
 
 example_coords = [

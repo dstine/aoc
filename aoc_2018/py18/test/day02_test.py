@@ -1,5 +1,5 @@
-import aoc_2018.test.test_utils as test_utils
-import aoc_2018.day02 as day02
+import py18.test.test_utils as test_utils
+import py18.day02 as day02
 import pytest
 
 def test_count():

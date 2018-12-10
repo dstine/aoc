@@ -1,5 +1,5 @@
-import aoc_2018.test.test_utils as test_utils
-import aoc_2018.day08 as day08
+import py18.test.test_utils as test_utils
+import py18.day08 as day08
 import pytest
 
 example_input = [2, 3, 0, 3, 10, 11, 12, 1, 1, 0, 1, 99, 2, 1, 1, 2]
