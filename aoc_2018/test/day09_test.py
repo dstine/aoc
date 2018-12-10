@@ -11,3 +11,7 @@ def test_part1():
     assert day09.part1(30, 5807) == 37305
     # my input
     assert day09.part1(476, 71657) == 386018
+
+def test_part2():
+    # my input
+    assert day09.part2(476, 7165700) == 3085518618

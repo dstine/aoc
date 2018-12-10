@@ -1,28 +1,24 @@
-def part1(n_players, last_marble):
-    circle = [0]
-    scores = [0] * n_players
-    current_marble = 0
-    current_index = 0
-    current_player = 0
-    while True:
-        #print('[{}] {:2d} : {}'.format(current_player, current_index, circle))
-        current_marble += 1
-        current_player = (current_player + 1) % n_players
-        
-        if (current_marble % 23 == 0):
-            current_index -= 7
-            if current_index < 0:
-                current_index += len(circle)
-            removed_marble = circle.pop(current_index)
-            score = current_marble + removed_marble
-            scores[current_player] += score
-        else:
-            current_index += 2
-            if current_index > len(circle):
-                current_index -= len(circle)
-            circle.insert(current_index, current_marble)
+from collections import deque
 
-        if current_marble > last_marble:
-            break
+def part1(n_players, last_marble):
+    return compute(n_players, last_marble)
+
+def part2(n_players, last_marble):
+    return compute(n_players, last_marble)
+
+def compute(n_players, last_marble):
+    circle = deque([0])
+    scores = [0] * n_players
+    for marble in range(1, last_marble+1):
+        if marble % 23 == 0:
+            circle.rotate(7)
+            removed_marble = circle.pop()
+            score = marble + removed_marble
+            player = (marble % n_players) - 1
+            scores[player] += score
+            circle.rotate(-1)
+        else:
+            circle.rotate(-1)
+            circle.append(marble)
 
     return max(scores)
