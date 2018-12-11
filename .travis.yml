@@ -5,6 +5,8 @@ matrix:
     - language: python
       python:
         - "3.6.5"
+      install:
+        - true
       before_script:
         - cd aoc_2017
       script:
@@ -12,6 +14,8 @@ matrix:
     - language: python
       python:
         - "3.6.5"
+      install:
+        - true
       before_script:
         - cd aoc_2018/py18
       script:
@@ -19,6 +23,8 @@ matrix:
     - language: go
       go:
         - "1.9.1"
+      install:
+        - true
       before_script:
         - cd aoc_2018/go18
       script:
