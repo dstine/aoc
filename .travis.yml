@@ -1,7 +1,19 @@
 dist: xenial
-language: python
-python:
-  - "3.6.5"
-script:
-  - pytest
+
+matrix:
+  include:
+    - language: python
+      python:
+        - "3.6.5"
+      before_script:
+        - cd aoc_2017
+      script:
+        - pytest
+    - language: python
+      python:
+        - "3.6.5"
+      before_script:
+        - cd aoc_2018
+      script:
+        - pytest
 
