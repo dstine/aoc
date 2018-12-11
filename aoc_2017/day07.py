@@ -62,7 +62,7 @@ def check_weights(program, program_dict):
 
 def parse_program(program_line):
     # program is of the form: name (weight)
-    name_and_weight = re.search('([a-z]+) \(([0-9]+)\)', program_line)
+    name_and_weight = re.search(r'([a-z]+) \(([0-9]+)\)', program_line)
     if not name_and_weight:
         raise Exception("no match")
     program_name = name_and_weight.group(1)

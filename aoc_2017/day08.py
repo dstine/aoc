@@ -30,7 +30,7 @@ def day8(program_lines):
     return (max_current_value, max_ever_value)
 
 def parse_instruction(program_line):
-    match = re.search('([a-z]+) ([a-z]+) ([\-0-9]+) if ([a-z]+) ([<>=!]+) ([\-0-9]+)', program_line)
+    match = re.search(r'([a-z]+) ([a-z]+) ([-0-9]+) if ([a-z]+) ([<>=!]+) ([-0-9]+)', program_line)
     if not match:
         raise Exception("no match")
     register = match.group(1)

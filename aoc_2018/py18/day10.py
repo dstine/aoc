@@ -26,7 +26,7 @@ def compute(input):
 
 def parse(input):
     points = []
-    prog = re.compile('position=<([\-\d]*),([\-\d]*)>velocity=<([\-\d]*),([\-\d]*)>')
+    prog = re.compile(r'position=<([-\d]*),([-\d]*)>velocity=<([-\d]*),([-\d]*)>')
     for line in input:
         line = line.replace(' ', '')
         px, py, vx, vy = prog.match(line).groups()
