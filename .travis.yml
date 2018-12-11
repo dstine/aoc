@@ -28,5 +28,5 @@ matrix:
       before_script:
         - cd aoc_2018/go18
       script:
-        - go test
+        - go test -v
 
