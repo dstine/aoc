@@ -13,7 +13,14 @@ matrix:
       python:
         - "3.6.5"
       before_script:
-        - cd aoc_2018
+        - cd aoc_2018/py18
       script:
         - pytest
+    - language: go
+      go:
+        - "1.9.1"
+      before_script:
+        - cd aoc_2018/go18
+      script:
+        - go test
 
