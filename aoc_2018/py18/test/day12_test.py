@@ -8,6 +8,14 @@ def test_part1():
     initial_state, rules = get_my_input()
     assert day12.part1(initial_state, rules, 20) == 2049
 
+def test_part2():
+    initial_state, rules = get_example_input()
+    assert day12.part2_example(initial_state, rules, 20) == 325
+    assert day12.part2_example(initial_state, rules, 100) == 1374
+    initial_state, rules = get_my_input()
+    assert day12.part2_input(initial_state, rules, 200) == 9206
+    assert day12.part2_input(initial_state, rules, 50000000000) == 2300000000006
+
 def get_my_input():
     path = test_utils.get_path('day12_input.txt')
     return get_input(path)

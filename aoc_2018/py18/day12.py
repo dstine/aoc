@@ -4,10 +4,24 @@ def part1(initial_state, rules, n_generations):
     for i in range(len(initial_state)):
         state[i] = initial_state[i]
     #print('{:2d}: {}'.format(0, state_as_string(state)))
-    for _ in range(1, n_generations+1):
+    for gen in range(1, n_generations+1):
         state = generation(state, rules)
         #print('{:2d}: {}'.format(gen, state_as_string(state)))
-    return sum([num for num, pot in state.items() if pot == '#'])
+        # use this to find pattern to build formulas for part2
+        #print('{:2d}: {}'.format(gen, calc_result(state)))
+    return calc_result(state)
+
+def part2_example(initial_state, rules, n_generations):
+    if n_generations < 100:
+        return part1(initial_state, rules, n_generations)
+    else:
+        return ((n_generations - 86) * 20) + 1094
+
+def part2_input(initial_state, rules, n_generations):
+    if n_generations < 120:
+        return part1(initial_state, rules, n_generations)
+    else:
+        return ((n_generations - 120) * 46) + 5526
 
 def generation(state, rules):
     next_state = state.copy()
@@ -30,3 +44,6 @@ def state_as_string(state):
     for i in range(min(state.keys()), max(state.keys())+1):
         val.append(state[i])
     return ''.join(val)
+
+def calc_result(state):
+    return sum([num for num, pot in state.items() if pot == '#'])
