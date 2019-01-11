@@ -1,3 +1,8 @@
+# python
 *.pyc
 .cache
+
+# kotlin
+build
+.gradle
 
