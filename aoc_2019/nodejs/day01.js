@@ -18,8 +18,6 @@ function calc_fuel_all(mass) {
     while (current > 0) {
         current = calc_fuel(current);
         total += current;
-        //console.log(total);
-        //console.log(current);
     }
     return total;
 }

@@ -1,5 +1,6 @@
 var assert = require('assert');
 
+var utils = require('./test_utils.js')
 var day01 = require('../day01.js')
 
 describe('day01', function() {
@@ -14,7 +15,7 @@ describe('day01', function() {
 describe('day01', function() {
     it('part1', function () {
         assert.equal(day01.part1(['12', '14', '1969']), 658);
-        var masses = get_input();
+        var masses = utils.get_input('day01');
         assert.equal(day01.part1(masses), 3282386);
     });
 });
@@ -31,17 +32,7 @@ describe('day01', function() {
 describe('day01', function() {
     it('part2', function () {
         assert.equal(day01.part2(['12', '14', '1969']), 970);
-        var masses = get_input();
+        var masses = utils.get_input('day01');
         assert.equal(day01.part2(masses), 4920708);
     });
 });
-
-var fs = require('fs');
-var path = require('path');
-
-function get_input() {
-    var input_path = path.join(__dirname, '../../data/day01_input.txt');
-    var input = fs.readFileSync(input_path, 'utf-8');
-    var lines = input.split('\n');
-    return lines;
-}
