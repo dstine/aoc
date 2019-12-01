@@ -1,7 +1,7 @@
 var assert = require('assert');
 
-var utils = require('./test_utils.js')
-var day01 = require('../day01.js')
+var utils = require('./test_utils.js');
+var day01 = require('../day01.js');
 
 describe('day01', function() {
     it('calc_fuel', function () {
