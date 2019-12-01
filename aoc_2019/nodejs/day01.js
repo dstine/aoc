@@ -1,7 +1,9 @@
-module.exports.calc_fuel = calc_fuel;
-module.exports.part1 = part1;
-module.exports.calc_fuel_all = calc_fuel_all;
-module.exports.part2 = part2;
+module.exports = {
+    calc_fuel: calc_fuel,
+    calc_fuel_all: calc_fuel_all,
+    part1: part1,
+    part2: part2,
+};
 
 function calc_fuel(mass) {
     var fuel = Math.floor(mass/3) - 2;
