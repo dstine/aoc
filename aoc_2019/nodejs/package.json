@@ -1,0 +1,17 @@
+{
+  "name": "aoc-2019",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "devDependencies": {
+    "mocha": "6.2.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": ""
+}
