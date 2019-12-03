@@ -15,4 +15,8 @@ describe('day02', function() {
         var opcodes = utils.get_input('day02', ',');
         assert.equal(day02.part1(opcodes), 7210630);
     });
+    it('part2', function () {
+        var opcodes = utils.get_input('day02', ',');
+        assert.equal(day02.part2(opcodes, 19690720), 3892);
+    });
 });
