@@ -27,7 +27,5 @@ function run_program(opcodes) {
 function part1(opcodes) {
     opcodes[1] = 12;
     opcodes[2] = 2;
-    console.log(typeof(opcodes[0]))
-    console.log(typeof(opcodes[1]))
     return run_program(opcodes);
 }
