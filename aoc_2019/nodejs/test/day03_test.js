@@ -12,19 +12,19 @@ describe('day03', function() {
                 [8,1], [8,2], [8,3], [8,4], [8,5],
                 [7,5], [6,5], [5,5], [4,5], [3,5],
                 [3,4], [3,3], [3,2],
-            ];
+            ].map(t => new day03.Point(t[0], t[1]));
         assert.deepEqual(w1_actual, w1_expected);
     });
     it('dist', function () {
-        assert.equal(day03.dist([3,3], [6,6]), 6);
-        assert.equal(day03.dist([-3,-3], [6,6]), 18);
-        assert.equal(day03.dist([1,2], [-6,1]), 8);
+        assert.equal(day03.dist(new day03.Point(3,3), new day03.Point(6,6)), 6);
+        assert.equal(day03.dist(new day03.Point(-3,-3), new day03.Point(6,6)), 18);
+        assert.equal(day03.dist(new day03.Point(1,2), new day03.Point(-6,1)), 8);
     });
     it('intersection', function () {
         var w1_moves = ['R8','U5','L5','D3'];
         var w2_moves = ['U7','R6','D4','L4'];
         var actual = day03.intersection(w1_moves, w2_moves);
-        var expected = [[6,5], [3,3]];
+        var expected = [new day03.Point(6,5), new day03.Point(3,3)];
         assert.deepEqual(actual, expected);
     });
     it('part1-example', function () {
@@ -39,6 +39,7 @@ describe('day03', function() {
         assert.equal(day03.part1(w1_moves, w2_moves), 135);
     });
     it('part1', function () {
+        this.timeout(200000);
         var moves = utils.get_input('day03');
         var w1_moves = moves[0].split(',');
         var w2_moves = moves[1].split(',');
