@@ -1,7 +1,8 @@
 class Point {
-    constructor(x, y) {
+    constructor(x, y, total_steps) {
         this.x = x;
         this.y = y;
+        this.total_steps = total_steps;
     }
 }
 
@@ -11,15 +12,16 @@ module.exports = {
     dist: dist,
     intersection: intersection,
     part1: part1,
-    //part2: part2,
+    part2: part2,
 };
 
-var ORIGIN = new Point(0, 0);
+var ORIGIN = new Point(0, 0, 0);
 
 function walk(moves) {
     var points = [];
     var segment_start = ORIGIN;
     var segment = 0;
+    var total_steps = 0;
     while (segment < moves.length) {
         var x = segment_start.x;
         var y = segment_start.y;
@@ -29,22 +31,26 @@ function walk(moves) {
         switch (dir) {
             case "U":
                 for (var s=1; s<=steps; s++) {
-                    points.push(new Point(x, y+s));
+                    total_steps += 1;
+                    points.push(new Point(x, y+s, total_steps));
                 }
                 break;
             case "D":
                 for (var s=1; s<=steps; s++) {
-                    points.push(new Point(x, y-s));
+                    total_steps += 1;
+                    points.push(new Point(x, y-s, total_steps));
                 }
                 break;
             case "R":
                 for (var s=1; s<=steps; s++) {
-                    points.push(new Point(x+s, y));
+                    total_steps += 1;
+                    points.push(new Point(x+s, y, total_steps));
                 }
                 break;
             case "L":
                 for (var s=1; s<=steps; s++) {
-                    points.push(new Point(x-s, y));
+                    total_steps += 1;
+                    points.push(new Point(x-s, y, total_steps));
                 }
                 break;
         }
@@ -67,7 +73,7 @@ function intersection(w1_moves, w2_moves) {
         for (var j=0; j<w2_points.length; j++) {
             var w2_point = w2_points[j];
             if (w1_point.x == w2_point.x && w1_point.y == w2_point.y) {
-                intersection.push(w1_point);
+                intersection.push([w1_point, w2_point]);
                 break;
             }
         }
@@ -78,9 +84,21 @@ function intersection(w1_moves, w2_moves) {
 function part1(w1_moves, w2_moves) {
     var int = intersection(w1_moves, w2_moves);
     var min = Number.POSITIVE_INFINITY;
-    int.forEach(function(point) {
+    int.forEach(function(points) {
+        // either point will do since we don't need total_steps
+        var point = points[0];
         var d = dist(ORIGIN, point);
         min = Math.min(d, min);
+    });
+    return min;
+}
+
+function part2(w1_moves, w2_moves) {
+    var int = intersection(w1_moves, w2_moves);
+    var min = Number.POSITIVE_INFINITY;
+    int.forEach(function(points) {
+        var total_steps = points[0].total_steps + points[1].total_steps;
+        min = Math.min(total_steps, min);
     });
     return min;
 }
