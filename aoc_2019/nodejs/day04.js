@@ -47,21 +47,15 @@ function part(input, is_candidate) {
 function is_candidate2(n) {
     var digits = n.toString().split('');
     var double_vals = [];
-    var prior_prior_digit = digits[0];
-    var prior_digit = digits[1];
-    if (prior_digit == prior_prior_digit) {
-        double_vals.push(prior_digit);
-    }
-    if (prior_digit < prior_prior_digit) {
-        return false;
-    }
-    var i = 2;
+    var prior_prior_digit = -1;
+    var prior_digit = digits[0];
+    var i = 1;
     while (i < digits.length) {
         var curr_digit = digits[i];
         // Two adjacent digits are the same (like 22 in 122345).
         // AND are not part of a larger group of matching digits
         if (curr_digit == prior_digit) {
-            if (prior_digit != prior_prior_digit) {
+            if ((i < 2) || (prior_digit != prior_prior_digit)) {
                 double_vals.push(curr_digit);
             } else if (double_vals.includes(curr_digit)) {
                 double_vals.pop();
