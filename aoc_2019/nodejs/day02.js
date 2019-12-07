@@ -6,7 +6,8 @@ module.exports = {
 
 function run_program(memory) {
     var iptr = 0;
-    while (iptr < memory.length) {
+    var halt = false;
+    while (iptr < memory.length && !halt) {
         var opcode = memory[iptr];
         switch (opcode) {
             case 1:
@@ -16,7 +17,8 @@ function run_program(memory) {
                 memory[memory[iptr+3]] = memory[memory[iptr+1]] * memory[memory[iptr+2]];
                 break;
             case 99:
-                return memory[0];
+                halt = true;
+                break;
             default:
                 throw `unknown opcode: ${opcode}`;
         }
