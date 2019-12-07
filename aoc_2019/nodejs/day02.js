@@ -4,40 +4,40 @@ module.exports = {
     part2: part2,
 };
 
-function run_program(opcodes) {
-    var pc = 0;
-    while (pc < opcodes.length) {
-        var opcode = opcodes[pc];
+function run_program(memory) {
+    var iptr = 0;
+    while (iptr < memory.length) {
+        var opcode = memory[iptr];
         switch (opcode) {
             case 1:
-                opcodes[opcodes[pc+3]] = opcodes[opcodes[pc+1]] + opcodes[opcodes[pc+2]];
+                memory[memory[iptr+3]] = memory[memory[iptr+1]] + memory[memory[iptr+2]];
                 break;
             case 2:
-                opcodes[opcodes[pc+3]] = opcodes[opcodes[pc+1]] * opcodes[opcodes[pc+2]];
+                memory[memory[iptr+3]] = memory[memory[iptr+1]] * memory[memory[iptr+2]];
                 break;
             case 99:
-                return opcodes[0];
+                return memory[0];
             default:
                 throw `unknown opcode: ${opcode}`;
         }
-        pc += 4;
+        iptr += 4;
     }
-    return opcodes[0];
+    return memory[0];
 }
 
-function part1(opcodes) {
-    opcodes[1] = 12;
-    opcodes[2] = 2;
-    return run_program(opcodes);
+function part1(memory) {
+    memory[1] = 12;
+    memory[2] = 2;
+    return run_program(memory);
 }
 
-function part2(opcodes, target) {
+function part2(memory, target) {
     for (var noun=0; noun<100; noun++) {
         for (var verb=0; verb<100; verb++) {
-            var ops = [...opcodes];
-            ops[1] = noun;
-            ops[2] = verb;
-            var result = run_program(ops);
+            var mem = [...memory];
+            mem[1] = noun;
+            mem[2] = verb;
+            var result = run_program(mem);
             if (result == target) {
                 return 100 * noun + verb;
             }

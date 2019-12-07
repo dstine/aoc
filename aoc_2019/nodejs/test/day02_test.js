@@ -12,11 +12,11 @@ describe('day02', function() {
         assert.equal(day02.run_program([1,1,1,4,99,5,6,0,99]), 30);
     });
     it('part1', function () {
-        var opcodes = utils.get_input('day02', ',', Number);
-        assert.equal(day02.part1(opcodes), 7210630);
+        var memory = utils.get_input('day02', ',', Number);
+        assert.equal(day02.part1(memory), 7210630);
     });
     it('part2', function () {
-        var opcodes = utils.get_input('day02', ',', Number);
-        assert.equal(day02.part2(opcodes, 19690720), 3892);
+        var memory = utils.get_input('day02', ',', Number);
+        assert.equal(day02.part2(memory, 19690720), 3892);
     });
 });
