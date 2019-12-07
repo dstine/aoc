@@ -1,34 +1,24 @@
 module.exports = {
-    is_candidate,
+    is_candidate1,
     part1,
     is_candidate2,
     part2,
 };
 
-function is_candidate(n) {
-    var digits = n.toString().split('');
-    var has_double = false;
-    var prior_digit = digits[0];
-    var i = 1;
-    while (i < digits.length) {
-        var curr_digit = digits[i];
-        // Two adjacent digits are the same (like 22 in 122345).
-        if (curr_digit == prior_digit) {
-            has_double = true;
-        }
-        // Going from left to right, the digits never decrease;
-        // they only ever increase or stay the same (like 111123 or 135679).
-        if (curr_digit < prior_digit) {
-            return false;
-        }
-        prior_digit = curr_digit;
-        i += 1;
-    }
-    return has_double;
+function is_candidate1(n) {
+    return is_candidate(n, false);
 }
 
 function part1(input) {
-    return part(input, is_candidate);
+    return part(input, is_candidate1);
+}
+
+function is_candidate2(n) {
+    return is_candidate(n, true);
+}
+
+function part2(input) {
+    return part(input, is_candidate2);
 }
 
 function part(input, is_candidate) {
@@ -44,21 +34,21 @@ function part(input, is_candidate) {
     return count;
 }
 
-function is_candidate2(n) {
+function is_candidate(n, exactly_two) {
     var digits = n.toString().split('');
-    var double_vals = [];
+    var double_digits = [];
     var prior_prior_digit = -1;
     var prior_digit = digits[0];
     var i = 1;
     while (i < digits.length) {
         var curr_digit = digits[i];
         // Two adjacent digits are the same (like 22 in 122345).
-        // AND are not part of a larger group of matching digits
+        // AND if "exactly_two", are not part of a larger group of matching digits
         if (curr_digit == prior_digit) {
-            if ((i < 2) || (prior_digit != prior_prior_digit)) {
-                double_vals.push(curr_digit);
-            } else if (double_vals.includes(curr_digit)) {
-                double_vals.pop();
+            if (!exactly_two || (i < 2) || (prior_digit != prior_prior_digit)) {
+                double_digits.push(curr_digit);
+            } else if (double_digits.includes(curr_digit)) {
+                double_digits.pop();
             }
         }
         // Going from left to right, the digits never decrease;
@@ -70,9 +60,5 @@ function is_candidate2(n) {
         prior_digit = curr_digit;
         i += 1;
     }
-    return double_vals.length > 0;
-}
-
-function part2(input) {
-    return part(input, is_candidate2);
+    return double_digits.length > 0;
 }
