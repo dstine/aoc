@@ -31,24 +31,15 @@ function count_orbits(space_map) {
     }
 
     count(bodies, bodies[COM], 0);
-    var total = 0;
-    for (let [name, body] of Object.entries(bodies)) {
-        total += body.count;
-    }
-    return total;
+    return Object.values(bodies).map(body => body.count).reduce((a, b) => a + b, 0);
 }
 
-function count(bodies, body, n) {
-    body.count = n;
+function count(bodies, body, depth) {
+    body.count = depth;
     if (body.orbitees.length == 0) {
-        return n+1;
-    } else {
-        return body
-            .orbitees
-            .map(function(orbitee) {
-                var next = bodies[orbitee];
-                return 1 + count(bodies, next, n+1);
-            })
-            .reduce((a, b) => a + b, 0);
+        return;
     }
+    body.orbitees.forEach(orbitee =>
+        count(bodies, bodies[orbitee], depth+1)
+    );
 }
