@@ -6,7 +6,7 @@ class Body {
     constructor(name) {
         this.name = name;
         this.count = 0;
-        this.orbitees = [];
+        this.outers = [];
     }
 }
 
@@ -17,16 +17,16 @@ function count_orbits(space_map) {
     const bodies = { COM: new Body(COM) };
     let i = 0;
     while (i < space_map.length) {
-        const halves = (space_map[i]).split(')');
-        const inner = halves[0];
-        const name = halves[1];
-        if (!bodies[name]) {
-            bodies[name] = new Body(name);
+        const halves = space_map[i].split(')');
+        const inner_name = halves[0];
+        const outer_name = halves[1];
+        if (!bodies[outer_name]) {
+            bodies[outer_name] = new Body(outer_name);
         }
-        if (!bodies[inner]) {
-            bodies[inner] = new Body(inner);
+        if (!bodies[inner_name]) {
+            bodies[inner_name] = new Body(inner_name);
         }
-        bodies[inner].orbitees.push(bodies[name]);
+        bodies[inner_name].outers.push(bodies[outer_name]);
         i += 1;
     }
 
@@ -36,10 +36,10 @@ function count_orbits(space_map) {
 
 function count(body, depth) {
     body.count = depth;
-    if (body.orbitees.length == 0) {
+    if (body.outers.length == 0) {
         return;
     }
-    body.orbitees.forEach(orbitee =>
-        count(orbitee, depth+1)
+    body.outers.forEach(outer =>
+        count(outer, depth+1)
     );
 }
