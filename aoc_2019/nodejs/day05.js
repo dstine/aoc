@@ -14,34 +14,32 @@ function run_program(memory, input) {
     while (iptr < memory.length && !halt) {
         var iword = memory[iptr];
         var opcode = iword % 1e2;
-        var mode1 = Math.trunc(iword / 1e2) % 10;
-        var mode2 = Math.trunc(iword / 1e3) % 10;
-        var mode3 = Math.trunc(iword / 1e4) % 10;
+        var modes = Math.trunc(iword / 1e2);
         switch (opcode) {
             case 1:
                 if (debug) console.log('op1');
-                var val1 = deref(memory, iptr+1, mode1);
-                var val2 = deref(memory, iptr+2, mode2);
+                var val1 = deref(memory, iptr, modes, 1);
+                var val2 = deref(memory, iptr, modes, 2);
                 var result = val1 + val2;
-                memory[decode(memory, iptr+3, mode3)] = result;
+                memory[decode(memory, iptr, modes, 3)] = result;
                 incr = 4;
                 break;
             case 2:
                 if (debug) console.log('op2');
-                var val1 = deref(memory, iptr+1, mode1);
-                var val2 = deref(memory, iptr+2, mode2);
+                var val1 = deref(memory, iptr, modes, 1);
+                var val2 = deref(memory, iptr, modes, 2);
                 var result = val1 * val2;
-                memory[decode(memory, iptr+3, mode3)] = result;
+                memory[decode(memory, iptr, modes, 3)] = result;
                 incr = 4;
                 break;
             case 3:
                 if (debug) console.log('op3');
-                memory[decode(memory, iptr+1, mode1)] = input;
+                memory[decode(memory, iptr, modes, 1)] = input;
                 incr = 2;
                 break;
             case 4:
                 if (debug) console.log('op4');
-                var output = deref(memory, iptr+1, mode1);
+                var output = deref(memory, iptr, modes, 1);
                 outputs.push(output);
                 incr = 2;
                 break;
@@ -59,12 +57,13 @@ function run_program(memory, input) {
     return outputs;
 }
 
-function deref(memory, iptr, mode) {
-    return memory[decode(memory, iptr, mode)];
+function deref(memory, iptr, modes, offset) {
+    return memory[decode(memory, iptr, modes, offset)];
 }
 
-function decode(memory, iptr, mode) {
-    return mode ? iptr : memory[iptr];
+function decode(memory, iptr, modes, offset) {
+    var mode = Math.trunc(modes / Math.pow(10, offset-1)) % 10;
+    return mode ? iptr+offset : memory[iptr+offset];
 }
 
 function part1(memory) {
