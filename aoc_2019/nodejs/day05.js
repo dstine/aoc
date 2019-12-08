@@ -15,40 +15,28 @@ function run_program(memory, input) {
         var iword = memory[iptr];
         var opcode = iword % 1e2;
         var modes = Math.trunc(iword / 1e2);
-        switch (opcode) {
-            case 1:
-                if (debug) console.log('op1');
-                var val1 = deref(memory, iptr, modes, 1);
-                var val2 = deref(memory, iptr, modes, 2);
-                var result = val1 + val2;
-                memory[decode(memory, iptr, modes, 3)] = result;
-                incr = 4;
-                break;
-            case 2:
-                if (debug) console.log('op2');
-                var val1 = deref(memory, iptr, modes, 1);
-                var val2 = deref(memory, iptr, modes, 2);
-                var result = val1 * val2;
-                memory[decode(memory, iptr, modes, 3)] = result;
-                incr = 4;
-                break;
-            case 3:
-                if (debug) console.log('op3');
-                memory[decode(memory, iptr, modes, 1)] = input;
-                incr = 2;
-                break;
-            case 4:
-                if (debug) console.log('op4');
-                var output = deref(memory, iptr, modes, 1);
-                outputs.push(output);
-                incr = 2;
-                break;
-            case 99:
-                if (debug) console.log('op99');
-                halt = true;
-                break;
-            default:
-                throw `unknown opcode: ${opcode}`;
+        if (debug) console.log(`op${opcode}`);
+        if ([1,2].includes(opcode)) {
+            var val1 = deref(memory, iptr, modes, 1);
+            var val2 = deref(memory, iptr, modes, 2);
+            var result_loc = decode(memory, iptr, modes, 3);
+            if (opcode == 1) {
+                memory[result_loc] = val1 + val2;
+            } else {
+                memory[result_loc] = val1 * val2;
+            }
+            incr = 4;
+        } else if (3 == opcode) {
+            memory[decode(memory, iptr, modes, 1)] = input;
+            incr = 2;
+        } else if (4 == opcode) {
+            var output = deref(memory, iptr, modes, 1);
+            outputs.push(output);
+            incr = 2;
+        } else if (99 == opcode) {
+            halt = true;
+        } else {
+            throw `unknown opcode: ${opcode}`;
         }
         iptr += incr;
     }
