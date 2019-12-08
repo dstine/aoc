@@ -26,20 +26,20 @@ function count_orbits(space_map) {
         if (!bodies[inner]) {
             bodies[inner] = new Body(inner);
         }
-        bodies[inner].orbitees.push(name);
+        bodies[inner].orbitees.push(bodies[name]);
         i += 1;
     }
 
-    count(bodies, bodies[COM], 0);
+    count(bodies[COM], 0);
     return Object.values(bodies).map(body => body.count).reduce((a, b) => a + b, 0);
 }
 
-function count(bodies, body, depth) {
+function count(body, depth) {
     body.count = depth;
     if (body.orbitees.length == 0) {
         return;
     }
     body.orbitees.forEach(orbitee =>
-        count(bodies, bodies[orbitee], depth+1)
+        count(orbitee, depth+1)
     );
 }
