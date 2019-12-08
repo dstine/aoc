@@ -1,8 +1,8 @@
 module.exports = {
-    calc_fuel: calc_fuel,
-    calc_fuel_all: calc_fuel_all,
-    part1: part1,
-    part2: part2,
+    calc_fuel,
+    calc_fuel_all,
+    part1,
+    part2,
 };
 
 function calc_fuel(mass) {

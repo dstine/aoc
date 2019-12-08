@@ -1,7 +1,7 @@
 module.exports = {
-    run_program: run_program,
-    part1: part1,
-    part2: part2,
+    run_program,
+    part1,
+    part2,
 };
 
 const debug = false;

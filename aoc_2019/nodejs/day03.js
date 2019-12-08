@@ -7,12 +7,12 @@ class Point {
 }
 
 module.exports = {
-    Point: Point,
-    walk: walk,
-    dist: dist,
-    intersection: intersection,
-    part1: part1,
-    part2: part2,
+    Point,
+    walk,
+    dist,
+    intersection,
+    part1,
+    part2,
 };
 
 var ORIGIN = new Point(0, 0, 0);
