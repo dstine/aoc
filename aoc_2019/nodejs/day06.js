@@ -1,11 +1,13 @@
 module.exports = {
     part1,
+    part2,
 };
 
 class Body {
     constructor(name) {
         this.name = name;
         this.count = 0;
+        this.inners = [];
         this.outers = [];
     }
 }
@@ -27,6 +29,7 @@ function read_map(space_map) {
             bodies[inner_name] = new Body(inner_name);
         }
         bodies[inner_name].outers.push(bodies[outer_name]);
+        bodies[outer_name].inners.push(bodies[inner_name]);
         i += 1;
     }
     return bodies;
@@ -40,10 +43,27 @@ function part1(space_map) {
 
 function count(body, depth) {
     body.count = depth;
-    if (body.outers.length == 0) {
-        return;
-    }
     body.outers.forEach(outer =>
         count(outer, depth+1)
     );
+}
+
+const YOU = 'YOU';
+const SAN = 'SAN';
+
+function part2(space_map) {
+    const bodies = read_map(space_map);
+    traverse(bodies[YOU], 0);
+    // subtract two since problem states to not count the endpoints
+    return bodies[SAN].count - 2;
+}
+
+function traverse(body, depth) {
+    body.count = depth;
+    body.outers.forEach(outer => {
+        if (outer.count == 0) traverse(outer, depth+1);
+    });
+    body.inners.forEach(inner => {
+        if (inner.count == 0) traverse(inner, depth+1);
+    });
 }
