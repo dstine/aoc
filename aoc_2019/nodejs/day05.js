@@ -20,40 +20,28 @@ function run_program(memory, input) {
         switch (opcode) {
             case 1:
                 if (debug) console.log('op1');
-                var val1 = mode1 ? memory[iptr+1] : memory[memory[iptr+1]];
-                var val2 = mode2 ? memory[iptr+2] : memory[memory[iptr+2]];
+                var val1 = deref(memory, iptr+1, mode1);
+                var val2 = deref(memory, iptr+2, mode2);
                 var result = val1 + val2;
-                if (mode3) {
-                    memory[iptr+3] = result;
-                } else {
-                    memory[memory[iptr+3]] = result;
-                }
+                memory[decode(memory, iptr+3, mode3)] = result;
                 incr = 4;
                 break;
             case 2:
                 if (debug) console.log('op2');
-                var val1 = mode1 ? memory[iptr+1] : memory[memory[iptr+1]];
-                var val2 = mode2 ? memory[iptr+2] : memory[memory[iptr+2]];
+                var val1 = deref(memory, iptr+1, mode1);
+                var val2 = deref(memory, iptr+2, mode2);
                 var result = val1 * val2;
-                if (mode3) {
-                    memory[iptr+3] = result;
-                } else {
-                    memory[memory[iptr+3]] = result;
-                }
+                memory[decode(memory, iptr+3, mode3)] = result;
                 incr = 4;
                 break;
             case 3:
                 if (debug) console.log('op3');
-                if (mode1) {
-                    memory[iptr+1] = input;
-                } else {
-                    memory[memory[iptr+1]] = input;
-                }
+                memory[decode(memory, iptr+1, mode1)] = input;
                 incr = 2;
                 break;
             case 4:
                 if (debug) console.log('op4');
-                var output = mode1 ? memory[iptr+1] : memory[memory[iptr+1]];
+                var output = deref(memory, iptr+1, mode1);
                 outputs.push(output);
                 incr = 2;
                 break;
@@ -69,6 +57,14 @@ function run_program(memory, input) {
     var diagnostic_code = memory[0];
     outputs.push(diagnostic_code);
     return outputs;
+}
+
+function deref(memory, iptr, mode) {
+    return memory[decode(memory, iptr, mode)];
+}
+
+function decode(memory, iptr, mode) {
+    return mode ? iptr : memory[iptr];
 }
 
 function part1(memory) {
