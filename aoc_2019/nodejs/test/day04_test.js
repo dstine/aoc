@@ -1,6 +1,6 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var day04 = require('../day04.js');
+const day04 = require('../day04.js');
 
 describe('day04', function() {
     it('is_candidate', function () {

@@ -22,11 +22,11 @@ function part2(input) {
 }
 
 function part(input, is_candidate) {
-    var range = input.split('-').map(Number);
-    var start = range[0];
-    var end = range[1];
-    var count = 0;
-    for (var n=start; n<=end; n++) {
+    const range = input.split('-').map(Number);
+    const start = range[0];
+    const end = range[1];
+    let count = 0;
+    for (let n=start; n<=end; n++) {
         if (is_candidate(n)) {
             count += 1;
         }
@@ -35,13 +35,13 @@ function part(input, is_candidate) {
 }
 
 function is_candidate(n, exactly_two) {
-    var digits = n.toString().split('');
-    var double_digits = [];
-    var prior_prior_digit = -1;
-    var prior_digit = digits[0];
-    var i = 1;
+    const digits = n.toString().split('');
+    const double_digits = [];
+    let prior_prior_digit = -1;
+    let prior_digit = digits[0];
+    let i = 1;
     while (i < digits.length) {
-        var curr_digit = digits[i];
+        const curr_digit = digits[i];
         // Two adjacent digits are the same (like 22 in 122345).
         // AND if "exactly_two", are not part of a larger group of matching digits
         if (curr_digit == prior_digit) {
