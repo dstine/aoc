@@ -1,7 +1,7 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var utils = require('./test_utils.js');
-var day01 = require('../day01.js');
+const utils = require('./test_utils.js');
+const day01 = require('../day01.js');
 
 describe('day01', function() {
     it('calc_fuel', function () {
@@ -12,7 +12,7 @@ describe('day01', function() {
     });
     it('part1', function () {
         assert.equal(day01.part1(['12', '14', '1969']), 658);
-        var masses = utils.get_input('day01');
+        const masses = utils.get_input('day01');
         assert.equal(day01.part1(masses), 3282386);
     });
     it('calc_fuel_all', function () {
@@ -23,7 +23,7 @@ describe('day01', function() {
     });
     it('part2', function () {
         assert.equal(day01.part2(['12', '14', '1969']), 970);
-        var masses = utils.get_input('day01');
+        const masses = utils.get_input('day01');
         assert.equal(day01.part2(masses), 4920708);
     });
 });

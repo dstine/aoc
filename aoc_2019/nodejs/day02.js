@@ -5,10 +5,10 @@ module.exports = {
 };
 
 function run_program(memory) {
-    var iptr = 0;
-    var halt = false;
+    let iptr = 0;
+    let halt = false;
     while (iptr < memory.length && !halt) {
-        var opcode = memory[iptr];
+        const opcode = memory[iptr];
         switch (opcode) {
             case 1:
                 memory[memory[iptr+3]] = memory[memory[iptr+1]] + memory[memory[iptr+2]];
@@ -34,12 +34,12 @@ function part1(memory) {
 }
 
 function part2(memory, target) {
-    for (var noun=0; noun<100; noun++) {
-        for (var verb=0; verb<100; verb++) {
-            var mem = [...memory];
+    for (let noun=0; noun<100; noun++) {
+        for (let verb=0; verb<100; verb++) {
+            const mem = [...memory];
             mem[1] = noun;
             mem[2] = verb;
-            var result = run_program(mem);
+            const result = run_program(mem);
             if (result == target) {
                 return 100 * noun + verb;
             }

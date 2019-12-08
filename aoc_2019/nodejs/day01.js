@@ -6,8 +6,8 @@ module.exports = {
 };
 
 function calc_fuel(mass) {
-    var fuel = Math.floor(mass/3) - 2;
-    return fuel < 0? 0 : fuel;
+    const fuel = Math.floor(mass/3) - 2;
+    return Math.max(0, fuel);
 }
 
 function part1(masses) {
@@ -15,8 +15,8 @@ function part1(masses) {
 }
 
 function calc_fuel_all(mass) {
-    var total = 0;
-    var current = mass;
+    let total = 0;
+    let current = mass;
     while (current > 0) {
         current = calc_fuel(current);
         total += current;
