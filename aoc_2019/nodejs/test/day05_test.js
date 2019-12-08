@@ -3,7 +3,7 @@ var assert = require('assert');
 var utils = require('./test_utils.js');
 var day05 = require('../day05.js');
 
-describe('day02', function() {
+describe('day05', function() {
     it('run_program_ops34', function () {
         assert.deepEqual(day05.run_program([1002,4,3,4,33], 123456), [1002]);
     });
