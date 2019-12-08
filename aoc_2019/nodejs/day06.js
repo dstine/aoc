@@ -1,5 +1,5 @@
 module.exports = {
-    count_orbits,
+    part1,
 };
 
 class Body {
@@ -12,7 +12,7 @@ class Body {
 
 const COM = 'COM';
 
-function count_orbits(space_map) {
+function read_map(space_map) {
     // AAA)BBB means  "BBB is in orbit around AAA"
     const bodies = { COM: new Body(COM) };
     let i = 0;
@@ -29,7 +29,11 @@ function count_orbits(space_map) {
         bodies[inner_name].outers.push(bodies[outer_name]);
         i += 1;
     }
+    return bodies;
+}
 
+function part1(space_map) {
+    const bodies = read_map(space_map);
     count(bodies[COM], 0);
     return Object.values(bodies).map(body => body.count).reduce((a, b) => a + b, 0);
 }
