@@ -4,16 +4,16 @@ module.exports = {
     part2: part2,
 };
 
-var debug = false;
+const debug = false;
 
 function run_program(memory, input) {
-    var outputs = [];
-    var iptr = 0;
-    var halt = false;
+    const outputs = [];
+    let iptr = 0;
+    let halt = false;
     while (iptr < memory.length && !halt) {
-        var iword = memory[iptr];
-        var opcode = iword % 1e2;
-        var modes = Math.trunc(iword / 1e2);
+        const iword = memory[iptr];
+        const opcode = iword % 1e2;
+        const modes = Math.trunc(iword / 1e2);
         if (debug) {
             console.log('--------------');
             console.log(`memory ${memory}`);
@@ -21,9 +21,9 @@ function run_program(memory, input) {
             console.log(`op     ${opcode}`);
         }
         if ([1,2,7,8].includes(opcode)) {
-            var val1 = deref(memory, iptr, modes, 1);
-            var val2 = deref(memory, iptr, modes, 2);
-            var result_loc = decode(memory, iptr, modes, 3);
+            const val1 = deref(memory, iptr, modes, 1);
+            const val2 = deref(memory, iptr, modes, 2);
+            const result_loc = decode(memory, iptr, modes, 3);
             if (1 == opcode) {
                 memory[result_loc] = val1 + val2;
             } else if (2 == opcode) {
@@ -38,18 +38,18 @@ function run_program(memory, input) {
             memory[decode(memory, iptr, modes, 1)] = input;
             iptr += 2;
         } else if (4 == opcode) {
-            var output = deref(memory, iptr, modes, 1);
+            const output = deref(memory, iptr, modes, 1);
             outputs.push(output);
             iptr += 2;
         } else if (5 == opcode) {
-            val1 = deref(memory, iptr, modes, 1);
+            const val1 = deref(memory, iptr, modes, 1);
             if (val1) {
                 iptr = deref(memory, iptr, modes, 2);
             } else {
                 iptr += 3;
             }
         } else if (6 == opcode) {
-            val1 = deref(memory, iptr, modes, 1);
+            const val1 = deref(memory, iptr, modes, 1);
             if (val1 == 0) {
                 iptr = deref(memory, iptr, modes, 2);
             } else {
@@ -69,7 +69,7 @@ function deref(memory, iptr, modes, offset) {
 }
 
 function decode(memory, iptr, modes, offset) {
-    var mode = Math.trunc(modes / Math.pow(10, offset-1)) % 10;
+    const mode = Math.trunc(modes / Math.pow(10, offset-1)) % 10;
     return mode ? iptr+offset : memory[iptr+offset];
 }
 

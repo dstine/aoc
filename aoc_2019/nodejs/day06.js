@@ -10,16 +10,16 @@ class Body {
     }
 }
 
-var COM = 'COM';
+const COM = 'COM';
 
 function count_orbits(space_map) {
     // AAA)BBB means  "BBB is in orbit around AAA"
-    var bodies = { COM: new Body(COM) };
-    var i = 0;
+    const bodies = { COM: new Body(COM) };
+    let i = 0;
     while (i < space_map.length) {
-        var halves = (space_map[i]).split(')');
-        var inner = halves[0];
-        var name = halves[1];
+        const halves = (space_map[i]).split(')');
+        const inner = halves[0];
+        const name = halves[1];
         if (!bodies[name]) {
             bodies[name] = new Body(name);
         }

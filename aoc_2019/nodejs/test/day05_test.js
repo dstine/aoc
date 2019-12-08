@@ -1,14 +1,14 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var utils = require('./test_utils.js');
-var day05 = require('../day05.js');
+const utils = require('./test_utils.js');
+const day05 = require('../day05.js');
 
 describe('day05', function() {
     it('run_program_ops34', function () {
         assert.deepEqual(day05.run_program([1002,4,3,4,33], 123456), []);
     });
     it('part1', function () {
-        var memory = utils.get_input('day05', ',', Number);
+        const memory = utils.get_input('day05', ',', Number);
         assert.deepEqual(day05.part1(memory), [0, 0, 0, 0, 0, 0, 0, 0, 0, 6069343]);
     });
     it('run_program_ops78', function () {
@@ -36,13 +36,13 @@ describe('day05', function() {
 
     });
     it('run_program_larger', function () {
-        var memory = [3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99];
+        const memory = [3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99];
         assert.deepEqual(day05.run_program(memory, 7), [999]);
         assert.deepEqual(day05.run_program(memory, 8), [1000]);
         assert.deepEqual(day05.run_program(memory, 9), [1001]);
     });
     it('part2', function () {
-        var memory = utils.get_input('day05', ',', Number);
+        const memory = utils.get_input('day05', ',', Number);
         assert.deepEqual(day05.part2(memory), [3188550]);
     });
 });
