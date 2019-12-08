@@ -61,8 +61,6 @@ function run_program(memory, input) {
             throw `unknown opcode: ${opcode}`;
         }
     }
-    var diagnostic_code = memory[0];
-    outputs.push(diagnostic_code);
     return outputs;
 }
 
