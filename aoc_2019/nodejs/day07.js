@@ -3,6 +3,7 @@ const Combinatorics = require('js-combinatorics');
 module.exports = {
     part1,
     run_permutation,
+    build_amps,
     run_program,
 };
 
@@ -24,21 +25,30 @@ function part1(memory) {
     let max_signal = 0;
     while (permutations.length > 0) {
         const phases = permutations.shift();
-        const signal = run_permutation(memory, phases);
+        const amps = build_amps(memory, phases);
+        const signal = run_permutation(amps);
         max_signal = Math.max(max_signal, signal);
     }
     return max_signal;
 }
 
-function run_permutation(memory, phases) {
+function run_permutation(amps) {
     let signal = 0;
-    while (phases.length > 0) {
-        const mem = [...memory];
-        const phase = phases.shift();
-        const amp = new Amp(mem, phase);
+    while (amps.length > 0) {
+        const amp = amps.shift();
         signal = amp.run(signal);
     }
     return signal;
+}
+
+function build_amps(memory, phases) {
+    const amps = [];
+    while (phases.length > 0) {
+        const mem = [...memory];
+        const phase = phases.shift();
+        amps.push(new Amp(mem, phase));
+    }
+    return amps;
 }
 
 /****************************
