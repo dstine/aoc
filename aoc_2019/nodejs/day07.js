@@ -21,7 +21,7 @@ class Amp {
 }
 
 function part1(memory) {
-    let permutations = Combinatorics.permutation([0,1,2,3,4]).toArray();
+    const permutations = Combinatorics.permutation([0,1,2,3,4]).toArray();
     let max_signal = 0;
     while (permutations.length > 0) {
         const phases = permutations.shift();
