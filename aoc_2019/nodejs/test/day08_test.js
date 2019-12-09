@@ -12,4 +12,12 @@ describe('day08', function() {
         const digits = utils.get_input('day08', '', Number);
         assert.equal(day08.part1(digits, 25, 6), 1792);
     });
+    it('part2-example', function () {
+        const digits = '0222112222120000'.split('').map(Number);
+        day08.part2(digits, 2, 2);
+    });
+    it('part2', function () {
+        const digits = utils.get_input('day08', '', Number);
+        day08.part2(digits, 25, 6);
+    });
 });
