@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "main": "",
+  "dependencies": {
+    "js-combinatorics": "0.5.4"
+  },
   "devDependencies": {
     "mocha": "6.2.2"
   },
