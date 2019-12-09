@@ -6,6 +6,19 @@ module.exports = {
     run_program,
 };
 
+class Amp {
+    constructor(memory, phase) {
+        this.memory = memory;
+        this.phase = phase;
+    }
+
+    run(input_signal) {
+        const outputs = run_program(this.memory, [this.phase, input_signal]);
+        const output_signal = outputs.pop();
+        return output_signal;
+    }
+}
+
 function part1(memory) {
     let permutations = Combinatorics.permutation([0,1,2,3,4]).toArray();
     let max_signal = 0;
@@ -22,8 +35,8 @@ function run_permutation(memory, phases) {
     while (phases.length > 0) {
         const mem = [...memory];
         const phase = phases.shift();
-        const outputs = run_program(mem, [phase, signal]);
-        signal = outputs.pop();
+        const amp = new Amp(mem, phase);
+        signal = amp.run(signal);
     }
     return signal;
 }
