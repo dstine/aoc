@@ -7,10 +7,10 @@ module.exports = {
 };
 
 function part1(memory) {
-    const permutations = Combinatorics.permutation([0,1,2,3,4]).toArray();
+    let permutations = Combinatorics.permutation([0,1,2,3,4]).toArray();
     let max_signal = 0;
-    for (let i=0; i <permutations.length; i++) {
-        const phases = permutations[i];
+    while (permutations.length > 0) {
+        const phases = permutations.shift();
         const signal = run_permutation(memory, phases);
         max_signal = Math.max(max_signal, signal);
     }
@@ -19,13 +19,18 @@ function part1(memory) {
 
 function run_permutation(memory, phases) {
     let signal = 0;
-    for (let i=0; i<phases.length; i++) {
+    while (phases.length > 0) {
         const mem = [...memory];
-        const outputs = run_program(mem, [phases[i], signal]);
+        const phase = phases.shift();
+        const outputs = run_program(mem, [phase, signal]);
         signal = outputs.pop();
     }
     return signal;
 }
+
+/****************************
+ * IntCode Computer
+ ****************************/
 
 const debug = false;
 
