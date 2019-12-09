@@ -22,33 +22,23 @@ class Amp {
 
 function part1(memory) {
     const permutations = Combinatorics.permutation([0,1,2,3,4]).toArray();
-    let max_signal = 0;
-    while (permutations.length > 0) {
-        const phases = permutations.shift();
-        const amps = build_amps(memory, phases);
-        const signal = run_permutation(amps);
-        max_signal = Math.max(max_signal, signal);
-    }
-    return max_signal;
+    return permutations.reduce(
+        (max_signal, phases) => {
+            const amps = build_amps(memory, phases);
+            const signal = run_permutation(amps);
+            return Math.max(max_signal, signal);
+        }, 0);
 }
 
 function run_permutation(amps) {
-    let signal = 0;
-    while (amps.length > 0) {
-        const amp = amps.shift();
-        signal = amp.run(signal);
-    }
-    return signal;
+    return amps.reduce((signal, amp) => amp.run(signal), 0);
 }
 
 function build_amps(memory, phases) {
-    const amps = [];
-    while (phases.length > 0) {
+    return phases.map(phase => {
         const mem = [...memory];
-        const phase = phases.shift();
-        amps.push(new Amp(mem, phase));
-    }
-    return amps;
+        return new Amp(mem, phase);
+    });
 }
 
 /****************************
